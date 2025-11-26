@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSCN Land Allocation (First Batch)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], input[type="email"], input[type="date"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .note {
+            font-size: 0.9em;
+            color: red;
+        }
+        .closed-message {
+            display: none;
+            color: red;
+            font-size: 1.5em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>FSCN Land Allocation (First Batch)</h1>
+    <p>Location of Land: Ihedioha Road Amaibo Nguru, Ngor Okpala Imo State</p>
+    <p>Please fill in your details below. A show of interest fee of 2,000 (non-refundable) applies.</p>
+
+    <div id="formContainer">
+        <form id="allocationForm">
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="fullname" required>
+            
+            <label for="staffNo">Staff Number:</label>
+            <input type="text" id="staffNo" name="staffNo" required>
+
+            <label for="gradeLevel">Grade Level:</label>
+            <input type="text" id="gradeLevel" name="gradeLevel" required>
+
+            <label for="department">Department:</label>
+            <select id="department" name="department" required>
+                <option value="">Select Department</option>
+                <option value="ARFFS">ARFFS</option>
+                <option value="AVSEC">AVSEC</option>
+                <option value="CIVIL">CIVIL</option>
+                <option value="MECHANICAL">MECHANICAL</option>
+                <option value="LWS">LWS</option>
+                <option value="ENVIRONMENTAL">ENVIRONMENTAL</option>
+                <option value="HR">HR</option>
+                <option value="SAFETY">SAFETY</option>
+                <option value="MEDICAL">MEDICAL</option>
+                <option value="OPERATIONS">OPERATIONS</option>
+                <option value="COP AFR">COP AFR</option>
+                <option value="ELECTRICAL">ELECTRICAL</option>
+                <option value="OTHERS">OTHERS</option>
+            </select>
+
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="station">Station/Airport:</label>
+            <input type="text" id="station" name="station" required>
+
+            <label for="appointmentYear">Year of First Appointment:</label>
+            <input type="date" id="appointmentYear" name="appointmentYear" required>
+
+            <label for="serviceConfirmation">Confirmation of Service:</label>
+            <select id="serviceConfirmation" name="serviceConfirmation" required>
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <p class="note">Note: A show of interest fee of 2,000 (non-refundable) applies.</p>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div class="closed-message" id="closedMessage">
+        <p>The portal is now closed.</p>
+    </div>
+
+    <script>
+        const closingTime = new Date();
+        // Set closing date (YYYY, MM (0-11), DD, HH, MM, SS)
+        closingTime.setDate(closingTime.getDate() + 10); // 10 days from now
+        closingTime.setHours(23, 59, 59); // Close at the end of the day
+
+        function checkPortalStatus() {
+            const now = new Date();
+            if (now > closingTime) {
+                document.getElementById('formContainer').style.display = 'none';
+                document.getElementById('closedMessage').style.display = 'block';
+            }
+        }
+
+        document.getElementById('allocationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // You can add code here to send form data to your server
+            alert("Your details have been submitted successfully!");
+            this.reset(); // Reset the form after submission
+        });
+
+        // Check the portal status on page load
+        checkPortalStatus();
+    </script>
+
+</body>
+</html>
